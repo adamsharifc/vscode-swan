@@ -3,6 +3,7 @@
 const vscode = require('vscode');
 const analyzeFile = require('./commands/analyzeFile.js');
 const analyzeWorkspace = require('./commands/analyzeWorkspace.js');
+const analyzeFolder = require('./commands/analyzeFolder.js');
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -29,10 +30,12 @@ function activate(context) {
 
     const analyzeFile_ = vscode.commands.registerCommand('swan.analyzeFile', analyzeFile);
     const analyzeWorkspace_ = vscode.commands.registerCommand('swan.analyzeWorkspace', analyzeWorkspace);
+	const analyzeFolder_ = vscode.commands.registerCommand('swan.analyzeFolder', analyzeFolder);
 
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(analyzeFile_);
 	context.subscriptions.push(analyzeWorkspace_);
+	context.subscriptions.push(analyzeFolder_);
 	
 }
 

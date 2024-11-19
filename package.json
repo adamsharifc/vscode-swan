@@ -4,40 +4,44 @@
   "description": "",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.95.0"
+	"vscode": "^1.95.0"
   },
   "categories": [
-    "Other"
+	"Other"
   ],
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-        "commands": [
-            {
-                "command": "swan.helloWorld",
-                "title": "Swan: Hello World"
-            },
-            {
-                "command": "swan.analyzeFile",
-                "title": "Swan: Analyze File"
-            },
-            {
-                "command": "swan.analyzeWorkspace",
-                "title": "Swan: Analyze Workspace"
-            }
-        ]
+		"commands": [
+			{
+				"command": "swan.helloWorld",
+				"title": "Swan: Hello World"
+			},
+			{
+				"command": "swan.analyzeFile",
+				"title": "Swan: Analyze File"
+			},
+			{
+				"command": "swan.analyzeWorkspace",
+				"title": "Swan: Analyze Workspace"
+			},
+			{
+			  "command": "swan.analyzeFolder",
+			  "title": "Swan: Analyze Folder"
+			}
+		]
   },
   "scripts": {
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "vscode-test"
+	"lint": "eslint .",
+	"pretest": "npm run lint",
+	"test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.95.0",
-    "@types/mocha": "^10.0.9",
-    "@types/node": "20.x",
-    "eslint": "^9.13.0",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+	"@types/vscode": "^1.95.0",
+	"@types/mocha": "^10.0.9",
+	"@types/node": "20.x",
+	"eslint": "^9.13.0",
+	"@vscode/test-cli": "^0.0.10",
+	"@vscode/test-electron": "^2.4.1"
   }
 }
