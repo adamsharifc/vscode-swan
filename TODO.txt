@@ -1,2 +1,2 @@
 - Add extension walkthroughs https://github.com/microsoft/vscode-extension-samples/tree/main/getting-started-sample
-- 
+- Welcome page experience https://github.com/microsoft/vscode/issues/83451

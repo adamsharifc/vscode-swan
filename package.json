@@ -36,7 +36,28 @@
 				"command": "swan.analyzeFolder",
 				"title": "Swan: Analyze Folder"
 			}
-		]
+		],
+		"configuration": {
+			"title": "Swan",
+			"type": "object",
+			"properties": {
+				"swan.executablePath": {
+					"type": "string",
+					"default": "swan",
+					"description": "Path to the SWAN executable"
+				},
+				"swan.configPath": {
+					"type": "string",
+					"default": "",
+					"description": "Path to the SWAN configuration file"
+				},
+				"swan.additionalArguments": {
+					"type": "array",
+					"default": [],
+					"description": "Additional arguments to pass to SWAN"
+				}
+			}
+		}
 	},
 	"icon": "./assets/readme/swan.png",
 	"scripts": {
