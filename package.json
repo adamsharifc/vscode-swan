@@ -12,10 +12,20 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "swan.helloWorld",
-      "title": "Hello World"
-    }]
+        "commands": [
+            {
+                "command": "swan.helloWorld",
+                "title": "Swan: Hello World"
+            },
+            {
+                "command": "swan.analyzeFile",
+                "title": "Swan: Analyze File"
+            },
+            {
+                "command": "swan.analyzeWorkspace",
+                "title": "Swan: Analyze Workspace"
+            }
+        ]
   },
   "scripts": {
     "lint": "eslint .",
