@@ -1,10 +1,10 @@
 <p align="center">
-    <img src="../swan/assets/readme/vscode-swan.png" alt="vscode-swan logo">
+    <img src="https://github.com/adamsharifc/vscode-swan/blob/main/assets/readme/vscode-swan.png" alt="vscode-swan logo">
 </p>
 
 # SWAN extension for Visual Studio Code
 
-This [Visual Studio Code]("https://code.visualstudio.com/") extension provides support for the [SWAN]("https://github.com/themaplelab/swan") Swift static analysis framework.
+This [Visual Studio Code](https://code.visualstudio.com/) extension provides support for the [SWAN](https://github.com/themaplelab/swan) Swift static analysis framework.
 
 <!-- ## Features
 
