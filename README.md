@@ -1,8 +1,12 @@
-# swan README
+<p align="center">
+    <img src="../swan/assets/readme/vscode-swan.png" alt="vscode-swan logo">
+</p>
 
-This is the README for your extension "swan". After writing up a brief description, we recommend including the following sections.
+# SWAN extension for Visual Studio Code
 
-## Features
+This [Visual Studio Code]("https://code.visualstudio.com/") extension provides support for the [SWAN]("https://github.com/themaplelab/swan") Swift static analysis framework.
+
+<!-- ## Features
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
@@ -48,18 +52,4 @@ Fixed issue #.
 Added features X, Y, and Z.
 
 ---
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+ -->
