@@ -22,23 +22,27 @@
 		"commands": [
 			{
 				"command": "swan.helloWorld",
-				"title": "Swan: Hello World"
+				"title": "SWAN: Hello World"
 			},
 			{
 				"command": "swan.analyzeFile",
-				"title": "Swan: Analyze File"
+				"title": "SWAN: Analyze File"
 			},
 			{
 				"command": "swan.analyzeWorkspace",
-				"title": "Swan: Analyze Workspace"
+				"title": "SWAN: Analyze Workspace"
 			},
 			{
 				"command": "swan.analyzeFolder",
-				"title": "Swan: Analyze Folder"
+				"title": "SWAN: Analyze Folder"
+			},
+			{
+				"command": "swan.configureSWAN",
+				"title": "SWAN: Configure SWAN"
 			}
 		],
 		"configuration": {
-			"title": "Swan",
+			"title": "SWAN",
 			"type": "object",
 			"properties": {
 				"swan.executablePath": {

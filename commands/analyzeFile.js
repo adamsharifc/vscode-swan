@@ -1,6 +1,6 @@
 const vscode = require('vscode');
 const { exec } = require('child_process');
-const path = require('path');
+const getExecPath = require('./getExecPath');
 
 async function analyzeFile() {
     try {
@@ -21,7 +21,7 @@ async function analyzeFile() {
         }
 
         const filePath = selected.uri.fsPath;
-        const execPath = "/home/adam/charliesierra/phoenix/swan/dev_only/demoArgs"; 
+        const execPath = await getExecPath();
 
         exec(`"${execPath}" "${filePath}"`, (error, stdout, stderr) => {
             if (error) {
@@ -34,9 +34,9 @@ async function analyzeFile() {
             }
 
             const panel = vscode.window.createWebviewPanel(
-                'swanAnalysis', // Identifier
-                'SWAN Analysis Result', // Title
-                vscode.ViewColumn.One, // Column to show the panel in
+                'swanAnalysis', 
+                'SWAN Analysis Result',         // window title 
+                vscode.ViewColumn.One,          // view column to show the webview in
                 {
                     enableScripts: true,
                     retainContextWhenHidden: true,
