@@ -41,6 +41,23 @@
 				"title": "SWAN: Configure SWAN"
 			}
 		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+				"id": "swanSidebar",
+				"title": "SWAN",
+				"icon": "./assets/readme/swan.svg"
+				}
+			]
+		},
+		"views": {
+			"swanSidebar": [
+				{
+				"id": "swanView",
+				"name": "SWAN View"
+				}
+			]
+		},
 		"configuration": {
 			"title": "SWAN",
 			"type": "object",

@@ -4,6 +4,27 @@ const analyzeWorkspace = require('./commands/analyzeWorkspace.js');
 const analyzeFolder = require('./commands/analyzeFolder.js');
 const configureSWAN = require('./commands/configureSWAN.js');
 
+class SwanViewProvider {
+    constructor(context) {
+        this.context = context;
+    }
+
+    getChildren(element) {
+        if (!element) {
+            return Promise.resolve([
+                new vscode.TreeItem('Item 1', vscode.TreeItemCollapsibleState.None),
+                new vscode.TreeItem('Item 2', vscode.TreeItemCollapsibleState.None),
+                new vscode.TreeItem('Item 3', vscode.TreeItemCollapsibleState.None)
+            ]);
+        }
+        return Promise.resolve([]);
+    }
+
+    getTreeItem(element) {
+        return element;
+    }
+}
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 
@@ -38,6 +59,8 @@ function activate(context) {
 	context.subscriptions.push(analyzeFolder_);
 	context.subscriptions.push(configureSWAN_);
 	
+    const swanViewProvider = new SwanViewProvider(context);
+    vscode.window.registerTreeDataProvider('swanView', swanViewProvider);
 }
 
 // This method is called when your extension is deactivated
