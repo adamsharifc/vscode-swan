@@ -44,17 +44,21 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-				"id": "swanSidebar",
-				"title": "SWAN",
-				"icon": "./assets/readme/swan.svg"
+					"id": "swanSidebar",
+					"title": "SWAN",
+					"icon": "./assets/readme/swan.svg"
 				}
 			]
 		},
 		"views": {
 			"swanSidebar": [
 				{
-				"id": "swanView",
-				"name": "SWAN View"
+					"id": "swanOverview",
+					"name": "Overview"
+				},
+				{
+					"id": "swanReports",
+					"name": "Reports"
 				}
 			]
 		},
