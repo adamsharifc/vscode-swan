@@ -6,51 +6,81 @@ const configureSWAN = require('./commands/configureSWAN.js');
 const SwanOverviewViewProvider = require('./sidebar/swanOverviewView');
 const SwanReportsViewProvider = require('./sidebar/swanReportsView');
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-
-/**
- * @param {vscode.ExtensionContext} context
- */
 function activate(context) {
+    console.log('Swan is now active!');
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Swan is now active!');
+    const disposable = vscode.commands.registerCommand('swan.helloWorld', function () {
+        vscode.window.showInformationMessage('Hello World from swan this is a change!');
+    });
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('swan.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+    const analyzeFile_ = vscode.commands.registerCommand('swan.analyzeFile', async () => {
+        const startTime = Date.now();
+        await analyzeFile();
+        const duration = (Date.now() - startTime) / 1000;
+        const totalFilesAnalyzed = context.globalState.get('totalFilesAnalyzed', 0) + 1;
+        context.globalState.update('totalFilesAnalyzed', totalFilesAnalyzed);
+        context.globalState.update('lastAnalysisRun', new Date().toISOString().split('T')[0]);
+        context.globalState.update('analysisDuration', `${duration} seconds`);
+        swanOverviewProvider.refresh();
+        vscode.window.showInformationMessage('Re-analyze Current File command executed');
+    });
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from swan this is a change!');
-	});
+    const analyzeWorkspace_ = vscode.commands.registerCommand('swan.analyzeWorkspace', async () => {
+        const startTime = Date.now();
+        await analyzeWorkspace();
+        const duration = (Date.now() - startTime) / 1000;
+        const totalFilesAnalyzed = context.globalState.get('totalFilesAnalyzed', 0) + 1;
+        context.globalState.update('totalFilesAnalyzed', totalFilesAnalyzed);
+        context.globalState.update('lastAnalysisRun', new Date().toISOString().split('T')[0]);
+        context.globalState.update('analysisDuration', `${duration} seconds`);
+        swanOverviewProvider.refresh();
+        vscode.window.showInformationMessage('Re-analyze Current Project command executed');
+    });
 
+    const analyzeFolder_ = vscode.commands.registerCommand('swan.analyzeFolder', analyzeFolder);
+    const configureSWAN_ = vscode.commands.registerCommand('swan.configureSWAN', configureSWAN);
 
-    const analyzeFile_ = vscode.commands.registerCommand('swan.analyzeFile', analyzeFile);
-    const analyzeWorkspace_ = vscode.commands.registerCommand('swan.analyzeWorkspace', analyzeWorkspace);
-	const analyzeFolder_ = vscode.commands.registerCommand('swan.analyzeFolder', analyzeFolder);
-	const configureSWAN_ = vscode.commands.registerCommand('swan.configureSWAN', configureSWAN);
+    const reanalyzeCurrentFile = vscode.commands.registerCommand('swan.reanalyzeCurrentFile', async () => {
+        const editor = vscode.window.activeTextEditor;
+        if (editor) {
+            const document = editor.document;
+            const filePath = document.uri.fsPath;
+            const startTime = Date.now();
+            await analyzeFile(filePath); // Assuming analyzeFile can take a file path as an argument
+            const duration = (Date.now() - startTime) / 1000;
+            const totalFilesAnalyzed = context.globalState.get('totalFilesAnalyzed', 0) + 1;
+            context.globalState.update('totalFilesAnalyzed', totalFilesAnalyzed);
+            context.globalState.update('lastAnalysisRun', new Date().toISOString().split('T')[0]);
+            context.globalState.update('analysisDuration', `${duration} seconds`);
+            swanOverviewProvider.refresh();
+            vscode.window.showInformationMessage('Re-analyze Current File command executed');
+        } else {
+            vscode.window.showInformationMessage('No active editor found to re-analyze the current file.');
+        }
+    });
 
-	context.subscriptions.push(disposable);
-	context.subscriptions.push(analyzeFile_);
-	context.subscriptions.push(analyzeWorkspace_);
-	context.subscriptions.push(analyzeFolder_);
-	context.subscriptions.push(configureSWAN_);
-	
-	const swanOverviewProvider = new SwanOverviewViewProvider(context);
-	context.subscriptions.push(vscode.window.registerTreeDataProvider('swanOverview', swanOverviewProvider));
+    const stopAnalysis = vscode.commands.registerCommand('swan.stopAnalysis', () => {
+        vscode.window.showInformationMessage('Stop Analysis command executed');
+    });
 
-	const swanReportsProvider = new SwanReportsViewProvider(context);
-	context.subscriptions.push(vscode.window.registerTreeDataProvidert('swanReports', swanReportsProvider));
+    context.subscriptions.push(disposable);
+    context.subscriptions.push(analyzeFile_);
+    context.subscriptions.push(analyzeWorkspace_);
+    context.subscriptions.push(analyzeFolder_);
+    context.subscriptions.push(configureSWAN_);
+    context.subscriptions.push(reanalyzeCurrentFile);
+    context.subscriptions.push(stopAnalysis);
+
+    const swanOverviewProvider = new SwanOverviewViewProvider(context);
+    vscode.window.registerTreeDataProvider('swanOverview', swanOverviewProvider);
+
+    const swanReportsProvider = new SwanReportsViewProvider(context);
+    vscode.window.registerTreeDataProvider('swanReports', swanReportsProvider);
 }
 
-// This method is called when your extension is deactivated
 function deactivate() {}
 
 module.exports = {
-	activate,
-	deactivate
-}
+    activate,
+    deactivate
+};

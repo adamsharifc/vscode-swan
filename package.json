@@ -1,8 +1,9 @@
 {
-	"name": "vscode-swan",
-	"displayName": "vscode-swan",
+	"name": "swan-vscode",
+	"displayName": "swan-vscode",
 	"description": "SWAN extension for Visual Studio Code",
-	"version": "0.0.1",
+	"publisher": "adamsharifc",
+	"version": "0.0.11",
 	"engines": {
 		"vscode": "^1.95.0"
 	},
@@ -22,23 +23,31 @@
 		"commands": [
 			{
 				"command": "swan.helloWorld",
-				"title": "SWAN: Hello World"
+				"title": "Hello World"
 			},
 			{
 				"command": "swan.analyzeFile",
-				"title": "SWAN: Analyze File"
+				"title": "Analyze File"
 			},
 			{
 				"command": "swan.analyzeWorkspace",
-				"title": "SWAN: Analyze Workspace"
+				"title": "Analyze Workspace"
 			},
 			{
 				"command": "swan.analyzeFolder",
-				"title": "SWAN: Analyze Folder"
+				"title": "Analyze Folder"
 			},
 			{
 				"command": "swan.configureSWAN",
-				"title": "SWAN: Configure SWAN"
+				"title": "Configure SWAN"
+			},
+			{
+				"command": "swan.stopAnalysis",
+				"title": "Stop Analysis"
+			},
+			{
+				"command": "swan.reanalyzeCurrentFile",
+				"title": "Re-analyze Current File"
 			}
 		],
 		"viewsContainers": {

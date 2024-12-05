@@ -1,10 +1,28 @@
 <p align="center">
-    <img src="https://github.com/adamsharifc/vscode-swan/blob/main/assets/readme/vscode-swan.png" alt="vscode-swan logo">
+    <img id="swan-logo" src="./assets/readme/vscode-swan.png" alt="vscode-swan logo">
 </p>
 
 # SWAN extension for Visual Studio Code
 
 This [Visual Studio Code](https://code.visualstudio.com/) extension provides support for the [SWAN](https://github.com/themaplelab/swan) Swift static analysis framework.
+
+## Getting Started
+
+### Step 1: Configure SWAN
+
+Before you can use the SWAN extension, you need to configure the path to the SWAN executable and other settings.
+
+1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on macOS).
+2. Type `Configure SWAN` and select the command.
+3. Select the path to the SWAN executable.
+
+### Step 2: Analyze Your Code
+
+1. Open a Swift file in Visual Studio Code.
+2. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on macOS).
+3. Type `SWAN: Analyze File` and select the command.
+4. Alternatively, use the Sidebar `Re-analyze Current File` button.
+
 
 <!-- ## Features
 
