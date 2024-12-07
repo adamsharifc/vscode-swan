@@ -5,6 +5,7 @@ const analyzeFolder = require('./commands/analyzeFolder.js');
 const configureSWAN = require('./commands/configureSWAN.js');
 const SwanOverviewViewProvider = require('./sidebar/swanOverviewView');
 const SwanReportsViewProvider = require('./sidebar/swanReportsView');
+const SwanOptionsViewProvider = require('./sidebar/swanOptionsView.js');
 
 function activate(context) {
     console.log('Swan is now active!');
@@ -14,15 +15,7 @@ function activate(context) {
     });
 
     const analyzeFile_ = vscode.commands.registerCommand('swan.analyzeFile', async () => {
-        const startTime = Date.now();
         await analyzeFile();
-        const duration = (Date.now() - startTime) / 1000;
-        const totalFilesAnalyzed = context.globalState.get('totalFilesAnalyzed', 0) + 1;
-        context.globalState.update('totalFilesAnalyzed', totalFilesAnalyzed);
-        context.globalState.update('lastAnalysisRun', new Date().toISOString().split('T')[0]);
-        context.globalState.update('analysisDuration', `${duration} seconds`);
-        swanOverviewProvider.refresh();
-        vscode.window.showInformationMessage('Re-analyze Current File command executed');
     });
 
     const analyzeWorkspace_ = vscode.commands.registerCommand('swan.analyzeWorkspace', async () => {
@@ -45,15 +38,7 @@ function activate(context) {
         if (editor) {
             const document = editor.document;
             const filePath = document.uri.fsPath;
-            const startTime = Date.now();
-            await analyzeFile(filePath); // Assuming analyzeFile can take a file path as an argument
-            const duration = (Date.now() - startTime) / 1000;
-            const totalFilesAnalyzed = context.globalState.get('totalFilesAnalyzed', 0) + 1;
-            context.globalState.update('totalFilesAnalyzed', totalFilesAnalyzed);
-            context.globalState.update('lastAnalysisRun', new Date().toISOString().split('T')[0]);
-            context.globalState.update('analysisDuration', `${duration} seconds`);
-            swanOverviewProvider.refresh();
-            vscode.window.showInformationMessage('Re-analyze Current File command executed');
+            await analyzeFile(filePath);
         } else {
             vscode.window.showInformationMessage('No active editor found to re-analyze the current file.');
         }
@@ -76,6 +61,16 @@ function activate(context) {
 
     const swanReportsProvider = new SwanReportsViewProvider(context);
     vscode.window.registerTreeDataProvider('swanReports', swanReportsProvider);
+
+    const swanOptionsProvider = new SwanOptionsViewProvider(context);
+    vscode.window.registerWebviewViewProvider("swanOptions", swanOptionsProvider);
+
+    // Hook into the save event
+    vscode.workspace.onDidSaveTextDocument((document) => {
+        const filePath = document.uri.fsPath;
+        analyzeFile(filePath);
+        console.log("I was called");
+    });
 }
 
 function deactivate() {}

@@ -63,11 +63,18 @@
 			"swanSidebar": [
 				{
 					"id": "swanOverview",
-					"name": "Overview"
+					"name": "Overview",
+					"type": "tree"
 				},
 				{
 					"id": "swanReports",
-					"name": "Reports"
+					"name": "Reports",
+					"type": "tree"
+				},
+				{
+					"id": "swanOptions",
+					"name": "Options",
+					"type": "webview"
 				}
 			]
 		},
